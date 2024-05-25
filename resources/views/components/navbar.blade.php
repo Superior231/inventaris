@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
     <div class="container">
-        <a href="." class="navbar-brand d-flex align-items-center gap-2 fw-bold">
+        <a href="{{ route('admin.dashboard') }}" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
             <img src="{{ url('assets/images/logo.png') }}" alt="">
             <div>
                 <p class="mb-0 fs-7" style="line-height: 15px;">
@@ -15,30 +15,30 @@
         <div class="collapse navbar-collapse" id="navbarMenu">
             <ul class="navbar-nav mx-auto gap-3">
                 <li class="nav-item">
-                    <a href="." class="nav-link active">
+                    <a wire:navigate href="{{ route('admin.dashboard') }}" class="nav-link {{ $active === 'dashboard' ? 'active' : '' }}">
                         <i class="bx bxs-dashboard"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle {{ $active === 'kategori' || $active === 'produk' ? 'active' : '' }}" data-bs-toggle="dropdown">
                         <i class="bx bx-box"></i> Inventaris
                     </a>
 
                     <ul class="dropdown-menu mt-2">
                         <li>
-                            <a href="kategori.html" class="dropdown-item">
+                            <a wire:navigate href="{{ route('admin.kategori') }}" class="dropdown-item {{ $active === 'kategori' ? 'active' : '' }}">
                                 <i class="bx bx-objects-horizontal-right"></i> Kategori Produk
                             </a>
                         </li>
                         <li>
-                            <a href="produk.html" class="dropdown-item">
+                            <a wire:navigate href="{{ route('admin.produk') }}" class="dropdown-item {{ $active === 'produk' ? 'active' : '' }}">
                                 <i class="bx bx-box"></i> Produk
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="transaksi.html" class="nav-link">
+                    <a href="transaksi.html" class="nav-link {{ $active === 'transaksi' ? 'active' : '' }}">
                         <i class='bx bx-line-chart'></i> Transaksi
                     </a>
                 </li>
@@ -52,7 +52,17 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end mt-2">
-                        <li><a href="#" class="dropdown-item">Log Out</a></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </ul>

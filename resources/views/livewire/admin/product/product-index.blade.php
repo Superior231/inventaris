@@ -6,11 +6,11 @@
     @push('script')
         @livewireScripts()
     @endpush
-    
-    
+
+
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <h3 class="text-dark fw-semibold">Kategori</h3>
-        <a wire:navigate href="{{ route('admin.kategori.tambah') }}" class="btn btn-primary">Tambah Kategori</a>
+        <h3 class="text-dark fw-semibold">Produk</h3>
+        <a wire:navigate href="{{ route('admin.produk.tambah') }}" class="btn btn-primary">Tambah Produk</a>
     </div>
 
     @if (session()->has('success'))
@@ -29,23 +29,27 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Nama Kategori</th>
-                            <th>Deskripsi</th>
-                            <th>Jumlah Produk</th>
+                            <th>Kode Produk</th>
+                            <th>Nama Produk</th>
+                            <th>Kategori Produk</th>
+                            <th>Qty</th>
+                            <th>Harga Beli</th>
+                            <th>Harga Jual</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($categories as $index => $item)
+                        @forelse ($products as $item)
                             <tr class="align-middle">
-                                <td>{{ ++$index }}</td>
-                                <td>{{ $item->category_name }}</td>
-                                <td>{!! $item->description !!}</td>
-                                <td>{{ $item->products_count }}</td>
+                                <td>{{ $item->product_code }}</td>
+                                <td>{{ $item->product_name }}</td>
+                                <td>{{ $item->category->category_name }}</td>
+                                <td>{{ number_format($item->stock) }}</td>
+                                <td>Rp. {{ number_format($item->purchase_price) }}</td>
+                                <td>Rp. {{ number_format($item->selling_price) }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
-                                        <a wire:navigate href="{{ route('admin.kategori.edit', [$item->slug, $item->id]) }}" class="btn btn-primary btn-sm p-2" title="Edit">
+                                        <a wire:navigate href="{{ route('admin.produk.edit', [$item->slug, $item->id]) }}" class="btn btn-primary btn-sm p-2" title="Edit">
                                             <i class='bx bx-pencil fs-6'></i>
                                         </a>
                                         <button wire:click="delete({{ $item->id }})" wire:confirm="Anda yakin?" class="btn btn-danger btn-sm p-2" title="Hapus">
@@ -54,10 +58,9 @@
                                     </div>
                                 </td>
                             </tr>
-
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">Tidak ada data.</td>
+                                <td colspan="7" class="text-center">Tidak ada data.</td>
                             </tr>
                         @endforelse
                     </tbody>
