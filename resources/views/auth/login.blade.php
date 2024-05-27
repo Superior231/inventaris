@@ -30,7 +30,7 @@
 
                             <div class="mb-3">
                                 <label for="email" class="mb-1">Alamat Email</label>
-                                <input type="text" name="email" class="form-control"
+                                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
                                     placeholder="Tulis alamat email kamu" autofocus>
 
                                 @error('email')
@@ -41,7 +41,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="mb-1">Password</label>
-                                <input type="password" name="password" class="form-control"
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                                     placeholder="Masukkan password kamu">
 
                                 @error('password')
