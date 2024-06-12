@@ -26,4 +26,9 @@ class Product extends Model
         // Product hanya boleh memiliki 1 kategory
         return $this->belongsTo(Category::class);
     }
+
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }

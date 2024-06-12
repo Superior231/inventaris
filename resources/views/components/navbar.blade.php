@@ -13,7 +13,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav mx-auto gap-3">
+            <ul class="navbar-nav mx-auto gap-0 gap-md-2">
                 <li class="nav-item">
                     <a wire:navigate href="{{ route('admin.dashboard') }}" class="nav-link {{ $active === 'dashboard' ? 'active' : '' }}">
                         <i class="bx bxs-dashboard"></i> Dashboard
@@ -37,11 +37,20 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="transaksi.html" class="nav-link {{ $active === 'transaksi' ? 'active' : '' }}">
-                        <i class='bx bx-line-chart'></i> Transaksi
-                    </a>
-                </li>
+                @if (Auth::user()->roles === 'Staff')
+                    <li class="nav-item">
+                        <a wire:navigate href="{{ route('admin.transaksi') }}" class="nav-link {{ $active === 'transaksi' ? 'active' : '' }}">
+                            <i class='bx bx-line-chart'></i> Transaksi
+                        </a>
+                    </li>
+                    
+                @else
+                    <li class="nav-item">
+                        <a wire:navigate href="{{ route('admin.staff') }}" class="nav-link {{ $active === 'staff' ? 'active' : '' }}">
+                            <i class='bx bx-user-pin'></i> Staff
+                        </a>
+                    </li>
+                @endif
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">

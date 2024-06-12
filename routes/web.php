@@ -9,6 +9,11 @@ use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Product\ProductCreate;
 use App\Livewire\Admin\Product\ProductEdit;
 use App\Livewire\Admin\Product\ProductIndex;
+use App\Livewire\Admin\Staff\StaffCreate;
+use App\Livewire\Admin\Staff\StaffEdit;
+use App\Livewire\Admin\Staff\StaffIndex;
+use App\Livewire\Admin\Transaction\TransactionCreate;
+use App\Livewire\Admin\Transaction\TransactionIndex;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes(['register' => false]);  // register dimatikan
+Auth::routes(['register' => false]);  // Register off
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -41,4 +46,13 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('produk', ProductIndex::class)->name('admin.produk');
     Route::get('produk/tambah', ProductCreate::class)->name('admin.produk.tambah');
     Route::get('produk/edit/{slug}/{id}', ProductEdit::class)->name('admin.produk.edit');
+
+    //// transaction
+    Route::get('transaksi', TransactionIndex::class)->name('admin.transaksi');
+    Route::get('transaksi/tambah', TransactionCreate::class)->name('admin.transaksi.tambah');
+
+    //// staff
+    Route::get('staff', StaffIndex::class)->name('admin.staff');
+    Route::get('staff/tambah', StaffCreate::class)->name('admin.staff.tambah');
+    Route::get('staff/edit/{id}', StaffEdit::class)->name('admin.staff.edit');
 });

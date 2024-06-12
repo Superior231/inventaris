@@ -23,5 +23,16 @@ class ProductSeeder extends Seeder
             'selling_price' => 7000000,
             'photo' => 'none'
         ]);
+
+        Product::create([
+            'product_code' => 'AR-00135',
+            'slug' => 'buku-sejarah',
+            'product_name' => 'Buku Sejarah',
+            'category_id' => 2,
+            'stock' => 200,
+            'purchase_price' => 80000,
+            'selling_price' => 90000,
+            'photo' => 'none'
+        ]);
     }
 }

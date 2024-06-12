@@ -18,5 +18,11 @@ class CategorySeeder extends Seeder
             'category_name' => 'Laptop',
             'description' => 'Ini adalah deskripsi Laptop'
         ]);
+
+        Category::create([
+            'slug' => 'buku',
+            'category_name' => 'Buku',
+            'description' => 'Ini adalah deskripsi Buku'
+        ]);
     }
 }
