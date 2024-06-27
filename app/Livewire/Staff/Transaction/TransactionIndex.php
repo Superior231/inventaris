@@ -6,9 +6,13 @@ use App\Models\Product;
 use App\Models\Transaction;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class TransactionIndex extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     // Layouts
     #[Layout('layouts.admin', [
         'title' => 'Warehouse - Transaksi',
@@ -31,7 +35,7 @@ class TransactionIndex extends Component
     public function render()
     {
         return view('livewire.staff.transaction.transaction-index', [
-            'transactions' => Transaction::orderBy('id', 'desc')->get()
+            'transactions' => Transaction::orderBy('id', 'desc')->paginate(1)
         ]);
     }
 }

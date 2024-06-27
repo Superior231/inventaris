@@ -41,7 +41,7 @@
                     <h6 class="fs-7 text-uppercase text-secondary fw-semibold mb-2">
                         Total Produk Terjual
                     </h6>
-                    <h4 class="text-uppercase text-dark fw-semibold">2,000</h4>
+                    <h4 class="text-uppercase text-dark fw-semibold">{{ number_format($product_sold) }}</h4>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
                     <h6 class="fs-7 text-uppercase text-secondary fw-semibold mb-2">
                         Total Pendapatan Bulan Ini
                     </h6>
-                    <h4 class="text-uppercase text-dark fw-semibold">Rp. 120,000,000</h4>
+                    <h4 class="text-uppercase text-dark fw-semibold">Rp. {{ number_format($income) }}</h4>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 <div class="card-body">
                     <span class="icon mb-4"><i class='bx bx-user fs-2'></i></span>
                     <h6 class="fs-7 text-uppercase text-secondary fw-semibold mb-2">
-                        Total User Aplikasi
+                        Total User
                     </h6>
                     <h4 class="text-uppercase text-dark fw-semibold">{{ number_format($user_count) }}</h4>
                 </div>
