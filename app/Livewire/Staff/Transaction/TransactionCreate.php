@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\Transaction;
+namespace App\Livewire\Staff\Transaction;
 
 use App\Models\Product;
 use App\Models\Transaction;
@@ -60,11 +60,11 @@ class TransactionCreate extends Component
         ]);
 
         session()->flash('success', 'Transaksi berhasil dibuat!');
-        return $this->redirectRoute('admin.transaksi', navigate:true);
+        return $this->redirectRoute('staff.transaksi', navigate:true);
     }
 
     public function render()
     {
-        return view('livewire.admin.transaction.transaction-create');
+        return view('livewire.staff.transaction.transaction-create');
     }
 }

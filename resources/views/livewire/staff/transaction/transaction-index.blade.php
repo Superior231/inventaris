@@ -10,7 +10,7 @@
 
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h3 class="text-dark fw-semibold">Transaksi</h3>
-        <a wire:navigate href="{{ route('admin.transaksi.tambah') }}" class="btn btn-primary">Tambah Transaksi</a>
+        <a wire:navigate href="{{ route('staff.transaksi.tambah') }}" class="btn btn-primary">Tambah Transaksi</a>
     </div>
 
     @include('components.alert')

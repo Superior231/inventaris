@@ -1,6 +1,6 @@
 <div>
     <div class="d-flex align-items-center gap-2 mb-4">
-        <a wire:navigate href="{{ route('admin.transaksi') }}" class="text-decoration-none text-dark" title="Back">
+        <a wire:navigate href="{{ route('staff.transaksi') }}" class="text-decoration-none text-dark" title="Back">
             <i class='bx bx-arrow-back fs-3'></i>
         </a>
         <h3 class="text-dark fw-semibold">Tambah Transaksi</h3>

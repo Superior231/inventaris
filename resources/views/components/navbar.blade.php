@@ -14,40 +14,45 @@
 
         <div class="collapse navbar-collapse" id="navbarMenu">
             <ul class="navbar-nav mx-auto gap-0 gap-md-2">
-                <li class="nav-item">
-                    <a wire:navigate href="{{ route('admin.dashboard') }}" class="nav-link {{ $active === 'dashboard' ? 'active' : '' }}">
-                        <i class="bx bxs-dashboard"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle {{ $active === 'kategori' || $active === 'produk' ? 'active' : '' }}" data-bs-toggle="dropdown">
-                        <i class="bx bx-box"></i> Inventaris
-                    </a>
-
-                    <ul class="dropdown-menu mt-2">
-                        <li>
-                            <a wire:navigate href="{{ route('admin.kategori') }}" class="dropdown-item {{ $active === 'kategori' ? 'active' : '' }}">
-                                <i class="bx bx-objects-horizontal-right"></i> Kategori Produk
-                            </a>
-                        </li>
-                        <li>
-                            <a wire:navigate href="{{ route('admin.produk') }}" class="dropdown-item {{ $active === 'produk' ? 'active' : '' }}">
-                                <i class="bx bx-box"></i> Produk
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                @if (Auth::user()->roles === 'Staff')
+                @if (Auth::user()->roles == 'Admin')
                     <li class="nav-item">
-                        <a wire:navigate href="{{ route('admin.transaksi') }}" class="nav-link {{ $active === 'transaksi' ? 'active' : '' }}">
-                            <i class='bx bx-line-chart'></i> Transaksi
+                        <a wire:navigate href="{{ route('admin.dashboard') }}" class="nav-link {{ $active === 'dashboard' ? 'active' : '' }}">
+                            <i class="bx bxs-dashboard"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle {{ $active === 'kategori' || $active === 'produk' ? 'active' : '' }}" data-bs-toggle="dropdown">
+                            <i class="bx bx-box"></i> Inventaris
+                        </a>
+
+                        <ul class="dropdown-menu mt-2">
+                            <li>
+                                <a wire:navigate href="{{ route('admin.kategori') }}" class="dropdown-item {{ $active === 'kategori' ? 'active' : '' }}">
+                                    <i class="bx bx-objects-horizontal-right"></i> Kategori Produk
+                                </a>
+                            </li>
+                            <li>
+                                <a wire:navigate href="{{ route('admin.produk') }}" class="dropdown-item {{ $active === 'produk' ? 'active' : '' }}">
+                                    <i class="bx bx-box"></i> Produk
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a wire:navigate href="{{ route('admin.staff') }}" class="nav-link {{ $active === 'staff' ? 'active' : '' }}">
+                            <i class='bx bx-user-pin'></i> Staff
                         </a>
                     </li>
                     
                 @else
                     <li class="nav-item">
-                        <a wire:navigate href="{{ route('admin.staff') }}" class="nav-link {{ $active === 'staff' ? 'active' : '' }}">
-                            <i class='bx bx-user-pin'></i> Staff
+                        <a wire:navigate href="{{ route('staff.dashboard') }}" class="nav-link {{ $active === 'dashboard' ? 'active' : '' }}">
+                            <i class="bx bxs-dashboard"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a wire:navigate href="{{ route('staff.transaksi') }}" class="nav-link {{ $active === 'transaksi' ? 'active' : '' }}">
+                            <i class='bx bx-line-chart'></i> Transaksi
                         </a>
                     </li>
                 @endif

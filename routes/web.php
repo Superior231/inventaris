@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\HomeController;
 use App\Livewire\Admin\Category\CategoryCreate;
 use App\Livewire\Admin\Category\CategoryEdit;
 use App\Livewire\Admin\Category\CategoryIndex;
@@ -12,8 +10,11 @@ use App\Livewire\Admin\Product\ProductIndex;
 use App\Livewire\Admin\Staff\StaffCreate;
 use App\Livewire\Admin\Staff\StaffEdit;
 use App\Livewire\Admin\Staff\StaffIndex;
-use App\Livewire\Admin\Transaction\TransactionCreate;
-use App\Livewire\Admin\Transaction\TransactionIndex;
+use App\Livewire\Staff\Dashboard as StaffDashboard;
+use App\Livewire\Staff\Transaction\TransactionCreate;
+use App\Livewire\Staff\Transaction\TransactionIndex;
+
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);  // Register off
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', StaffDashboard::class)->middleware('auth')->name('staff.dashboard');
+
+//// transaction
+Route::get('transaksi', TransactionIndex::class)->middleware('auth')->name('staff.transaksi');
+Route::get('transaksi/tambah', TransactionCreate::class)->middleware('auth')->name('staff.transaksi.tambah');
+
+
 
 // Admin
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function() {
@@ -46,10 +53,6 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('produk', ProductIndex::class)->name('admin.produk');
     Route::get('produk/tambah', ProductCreate::class)->name('admin.produk.tambah');
     Route::get('produk/edit/{slug}/{id}', ProductEdit::class)->name('admin.produk.edit');
-
-    //// transaction
-    Route::get('transaksi', TransactionIndex::class)->name('admin.transaksi');
-    Route::get('transaksi/tambah', TransactionCreate::class)->name('admin.transaksi.tambah');
 
     //// staff
     Route::get('staff', StaffIndex::class)->name('admin.staff');
