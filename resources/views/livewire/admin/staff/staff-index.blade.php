@@ -8,15 +8,21 @@
     @endpush
 
 
-    <div class="d-flex align-items-center justify-content-between mb-4">
+    <div class="title mb-4">
         <h3 class="text-dark fw-semibold">Staff</h3>
-        <a wire:navigate href="{{ route('admin.staff.tambah') }}" class="btn btn-primary">Tambah Staff</a>
     </div>
 
     @include('components.alert')
 
     <div class="card border-0">
         <div class="card-body p-4 p-lg-5">
+            <div class="actions d-flex align-items-center justify-content-between mb-4">
+                <div class="input-group w-auto">
+                    <span class="input-group-text bg-primary" id="basic-addon1"><i class='bx bx-search text-light'></i></span>
+                    <input wire:model.live="search" type="search" class="form-control" placeholder="Search user..." aria-describedby="basic-addon1">
+                </div>
+                <a wire:navigate href="{{ route('admin.staff.tambah') }}" class="btn btn-primary">Tambah</a>
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover table-striped">
                     <thead>

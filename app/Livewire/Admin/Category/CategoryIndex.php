@@ -13,6 +13,8 @@ class CategoryIndex extends Component
     protected $paginationTheme = 'bootstrap';
     public $numberOfPaginatorsRendered = [];
 
+    public $search = '';
+
     
     // Layouts
     #[Layout('layouts.admin', [
@@ -20,6 +22,11 @@ class CategoryIndex extends Component
         'active' => 'kategori'
     ])]
 
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function delete($id)
     {
@@ -33,7 +40,9 @@ class CategoryIndex extends Component
     public function render()
     {
         return view('livewire.admin.category.category-index', [
-            'categories' => Category::withCount('products')->paginate(10)
+            'categories' => Category::withCount('products')
+                ->where('category_name', 'like', '%'.$this->search.'%')
+                ->paginate(10)
         ]);
     }
 }

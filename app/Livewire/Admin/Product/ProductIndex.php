@@ -14,11 +14,19 @@ class ProductIndex extends Component
     protected $paginationTheme = 'bootstrap';
     public $numberOfPaginatorsRendered = [];
 
+    public $search = '';
+
     
     #[Layout('layouts.admin', [
         'title' => 'Warehouse - Produk',
         'active' => 'produk'
     ])]
+    
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function delete($id)
     {
@@ -37,7 +45,7 @@ class ProductIndex extends Component
     public function render()
     {
         return view('livewire.admin.product.product-index', [
-            'products' => Product::paginate(10)
+            'products' => Product::where('product_name', 'like', '%'.$this->search.'%')->paginate(10)
         ]);
     }
 }

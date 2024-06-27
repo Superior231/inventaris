@@ -14,11 +14,19 @@ class TransactionIndex extends Component
     protected $paginationTheme = 'bootstrap';
     public $numberOfPaginatorsRendered = [];
 
+    public $search = '';
+
     // Layouts
     #[Layout('layouts.admin', [
         'title' => 'Warehouse - Transaksi',
         'active' => 'transaksi'
     ])]
+
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
 
     public function delete($id)
@@ -36,7 +44,12 @@ class TransactionIndex extends Component
     public function render()
     {
         return view('livewire.staff.transaction.transaction-index', [
-            'transactions' => Transaction::orderBy('id', 'desc')->paginate(1)
+            'transactions' => Transaction::with('product')
+                    ->whereHas('product', function($query) {
+                        $query->where('product_name', 'like', '%'.$this->search.'%');
+                    })
+                    ->orderBy('id', 'desc')
+                    ->paginate(10)
         ]);
     }
 }
