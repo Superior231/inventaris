@@ -13,15 +13,7 @@
         <a wire:navigate href="{{ route('admin.transaksi.tambah') }}" class="btn btn-primary">Tambah Transaksi</a>
     </div>
 
-    @if (session()->has('success'))
-        <div class="alert alert-success alert-dismissible d-flex align-items-center gap-2" role="alert">
-            <i class='bx bxs-check-circle text-success fs-4'></i>
-            <div>
-                {{ session('success') }}
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+    @include('components.alert')
 
     <div class="card border-0">
         <div class="card-body p-4 p-lg-5">
