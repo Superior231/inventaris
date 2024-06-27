@@ -12,6 +12,7 @@ class TransactionIndex extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+    public $numberOfPaginatorsRendered = [];
 
     // Layouts
     #[Layout('layouts.admin', [

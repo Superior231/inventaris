@@ -3,12 +3,17 @@
 namespace App\Livewire\Admin\Category;
 
 use App\Models\Category;
-use App\Models\Product;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CategoryIndex extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public $numberOfPaginatorsRendered = [];
+
+    
     // Layouts
     #[Layout('layouts.admin', [
         'title' => 'Warehouse - Kategori',
@@ -28,7 +33,7 @@ class CategoryIndex extends Component
     public function render()
     {
         return view('livewire.admin.category.category-index', [
-            'categories' => Category::withCount('products')->get()
+            'categories' => Category::withCount('products')->paginate(10)
         ]);
     }
 }

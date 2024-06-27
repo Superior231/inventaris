@@ -6,9 +6,15 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductIndex extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public $numberOfPaginatorsRendered = [];
+
+    
     #[Layout('layouts.admin', [
         'title' => 'Warehouse - Produk',
         'active' => 'produk'
@@ -31,7 +37,7 @@ class ProductIndex extends Component
     public function render()
     {
         return view('livewire.admin.product.product-index', [
-            'products' => Product::all()
+            'products' => Product::paginate(10)
         ]);
     }
 }

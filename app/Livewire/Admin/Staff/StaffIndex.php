@@ -5,9 +5,15 @@ namespace App\Livewire\Admin\Staff;
 use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class StaffIndex extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public $numberOfPaginatorsRendered = [];
+
+    
     // Layouts
     #[Layout('layouts.admin', [
         'title' => 'Warehouse - Staff',
@@ -26,7 +32,7 @@ class StaffIndex extends Component
     public function render()
     {
         return view('livewire.admin.staff.staff-index', [
-            'users' => User::where('roles', 'staff')->get()
+            'users' => User::where('roles', 'staff')->paginate(10)
         ]);
     }
 }

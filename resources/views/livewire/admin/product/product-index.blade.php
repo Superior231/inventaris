@@ -58,6 +58,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="pagination-container d-flex justify-content-center">
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
 </div>

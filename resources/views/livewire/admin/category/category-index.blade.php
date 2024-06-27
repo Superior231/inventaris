@@ -55,6 +55,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="pagination-container d-flex justify-content-center">
+                {{ $categories->links() }}
+            </div>
         </div>
     </div>
 </div>
